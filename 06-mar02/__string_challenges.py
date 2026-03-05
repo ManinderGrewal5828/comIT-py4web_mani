@@ -16,7 +16,12 @@
 # --------------------------------------------------------------
 
 raw_input = "   alice   johnson  "
-# your code here
+raw_input = raw_input.strip()
+print(raw_input)
+raw_input = raw_input.title()
+print(raw_input)
+output = raw_input.replace("  ", " ")
+print(output)
 
 
 # --------------------------------------------------------------
@@ -32,7 +37,16 @@ raw_input = "   alice   johnson  "
 # --------------------------------------------------------------
 
 def is_valid_username(username):
-    pass  # your code here
+    if 4 <= len(username) <= 16:
+        username = username
+    elif username.isalnum():
+        username = username
+    elif username[0].isalpha():
+        username = username
+    elif username.islower():
+        return True
+    else:
+        return False
 
 print(is_valid_username("alice"))       # True
 print(is_valid_username("Alice"))       # False — uppercase
