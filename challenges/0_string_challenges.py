@@ -160,6 +160,10 @@ for score in results:
 divider(7)
 text = "Please contact support at help.desk@example.com for assistance."
 index_at = text.find("@")
+start = text.rfind(" ", 0, index_at) + 1
+end = text.find(" ", index_at)
+email = text[start:end]
+print(email)
 
 
 # --------------------------------------------------------------
@@ -199,8 +203,14 @@ score     = 432.7
 max_score = 500
 total_students = 1_284
 # your code here
-
-
+percentage = score / max_score
+report = (
+    f"Name: {student:<15}"
+    f"Score: {score:>6.1f} "
+    f"Percentage: {percentage:.1%} "
+    f"Total Students: {total_students:,}"
+)
+print(report)
 # --------------------------------------------------------------
 # Challenge 10 — String Compressor
 # Write a function called compress(s) that performs basic
@@ -215,7 +225,22 @@ total_students = 1_284
 divider(10)
 
 def compress(s):
-    pass  # your code here
+    if not s:
+        return s
+ # your code here
+    result = []
+    count = 1
+     
+    for i in range(1, len(s)):
+        if s[i] == s[i - 1]:
+            count += 1
+    else:
+        result.append(s[i - 1] + str(count))
+        count = 1
+
+    result.append(s[-1] + str(count))
+    compressed = "".join(result)
+    return compressed if len(compressed) < len(s) else s     
 
 print(compress("aabbccddaa"))    # "a2b2c2d2a2"
 print(compress("aaabba"))        # "a3b2a1"
